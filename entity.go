@@ -1,5 +1,9 @@
 package main
 
+const (
+	DelinquentWeeks = 2
+)
+
 type PaymentSchedule struct {
 	WeekNumber int
 	Amount     int
@@ -7,11 +11,12 @@ type PaymentSchedule struct {
 }
 
 type Loan struct {
-	ID          string
-	TotalWeeks  int
-	Outstanding int
-	Interest    float64
-	Schedule    []PaymentSchedule
+	ID            string
+	TotalWeeks    int
+	Outstanding   int
+	WeeklyPayment int
+	Interest      float64
+	Schedule      []PaymentSchedule
 }
 
 type LoanStore struct {
