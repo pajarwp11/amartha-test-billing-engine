@@ -48,6 +48,8 @@ func TestMakePaymentInvalidAmount(t *testing.T) {
 
 func TestIsDelinquent(t *testing.T) {
 	loan := NewLoan("1", 50, 110000, 10.0)
+	loan.Schedule[0].Paid = true
+	loan.Schedule[1].Paid = false
 	if loan.IsDelinquent(3) {
 		t.Errorf("Expected non-delinquent borrower, but got delinquent")
 	}

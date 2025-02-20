@@ -46,12 +46,17 @@ func (l *Loan) GetOutstanding() int {
 }
 
 func (l *Loan) IsDelinquent(currentWeek int) bool {
+	if currentWeek <= DelinquentWeeks {
+		return false
+	}
+
 	missedCount := 0
-	for i := currentWeek - 1; i >= 0 && i >= currentWeek-DelinquentWeeks; i-- {
+	for i := currentWeek - DelinquentWeeks - 1; i < currentWeek-1; i++ {
 		if !l.Schedule[i].Paid {
 			missedCount++
 		}
 	}
+
 	return missedCount >= DelinquentWeeks
 }
 
